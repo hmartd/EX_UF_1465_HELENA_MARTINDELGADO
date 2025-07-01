@@ -3,7 +3,7 @@ class InventoryManagement:
     def __init__(self, inventory={}):
         """Iniciliza los atributos
         Argumentos posicionales:
-        inventory - diccionario que almacena {product: quantity} 
+        inventory - diccionario que almacena {producto: cantidad} 
         """
         self._inventory = inventory
     
@@ -47,14 +47,22 @@ class InventoryManagement:
             print(f"ERROR: {product} no existe en el inventario")
 
     def find_product(self, text):
-        print(f"")
-        pass
+        print(f"\nBuscar '{text}'")
+        idx = 0
+        for elem in self._inventory:
+            if text in elem:
+                print(f'{elem}: {self._inventory[elem]}')
+                idx = 1
+        if idx == 0:
+            print(f"No se han encontrado resultados para '{text}'")
 
     def view_inventory(self, sort=False):
         print("\n--- Inventario ---")
-        for elem in self._inventory:
+        keys = sorted(self._inventory.keys()) if sort else self._inventory.keys()
+        for elem in keys:
             print(f'{elem}: {self._inventory[elem]}')
         print("------------------")
+
 
 
 tienda = InventoryManagement()
@@ -69,8 +77,15 @@ tienda.view_inventory()
 tienda.add_product("Peras", 5)
 tienda.view_inventory()
 
+tienda.add_product("Aguacates", 70)
+
+tienda.add_product("Bananos", 4)
+
+tienda.add_product("Guayabas", 7)
+
 tienda.add_product("Manzanas", 5)  
 tienda.view_inventory()
+tienda.view_inventory(sort=True) 
 
 # Consultar Producto
 tienda.consult_product("Manzanas")
@@ -82,4 +97,9 @@ tienda.view_inventory()
 # Modificar cantidad de Producto
 tienda.mod_quantity("Manzanas", 50)
 tienda.view_inventory()
+
+# Buscar Producto
+tienda.find_product("Ma")
+tienda.find_product("a")
+tienda.find_product("txt")
 
