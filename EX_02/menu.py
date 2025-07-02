@@ -1,6 +1,15 @@
 import inventory_management as im
 
 def mostrar_menu():
+    """Menú interactivo con 7 opcioness: 
+    1. Añadir productos
+    2. Consultar uno
+    3. Eliminar uno
+    4. Modificar cantidades
+    5. Buscar por texto
+    6. Mostrar inventario"
+    7. Salir del programa
+    """
     tienda = im.InventoryManagement()
 
     while True:
@@ -23,7 +32,7 @@ def mostrar_menu():
             continue
         
         if opcion == 1:
-            product = input("\n¿Qué producto quiere añadir?: ").capitalize().strip()
+            product = input("\n¿Qué producto quiere añadir?: ").capitalize().strip() # Se eliminan los espacios del principio y final, y se pone la primera letra en Mayúscula
             try:
                 quantity = int(input("Cantidad: "))
                 tienda.add_product(product, quantity)
